@@ -14,6 +14,7 @@
     <None Remove="Pages\Publishers\" />
     <None Remove="Pages\Authors\" />
     <None Remove="Pages\Categories\" />
+    <None Remove="Models\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -21,6 +22,7 @@
     <Folder Include="Pages\Publishers\" />
     <Folder Include="Pages\Authors\" />
     <Folder Include="Pages\Categories\" />
+    <Folder Include="Models\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.10" />
