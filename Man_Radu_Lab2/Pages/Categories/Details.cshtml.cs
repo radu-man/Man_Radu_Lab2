@@ -7,9 +7,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Man_Radu_Lab2.Data;
 using Man_Radu_Lab2.Models;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Man_Radu_Lab2.Pages.Books
+namespace Man_Radu_Lab2.Pages.Categories
 {
     public class DetailsModel : PageModel
     {
@@ -20,33 +19,23 @@ namespace Man_Radu_Lab2.Pages.Books
             _context = context;
         }
 
-      public Book Book { get; set; } = default!; 
+      public Category Category { get; set; } = default!; 
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Book == null)
+            if (id == null || _context.Category == null)
             {
                 return NotFound();
             }
 
-            var book = await _context.Book
-                        .Include(b => b.Publisher)
-                        .Include(a => a.Author)
-                        .Include(b => b.BookCategories).ThenInclude(b => b.Category)
-                        .AsNoTracking()
-                        .FirstOrDefaultAsync(m => m.ID == id);
-
-            if (book == null)
+            var category = await _context.Category.FirstOrDefaultAsync(m => m.ID == id);
+            if (category == null)
             {
                 return NotFound();
             }
             else 
             {
-                ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID",
-                "PublisherName");
-                ViewData["AuthorID"] = new SelectList(_context.Set<Author>(), "ID",
-                "LastName");
-                Book = book;
+                Category = category;
             }
             return Page();
         }
